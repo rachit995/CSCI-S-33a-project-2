@@ -4,16 +4,17 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
-from .models import User
+from .models import User, Category, Listing, Bid, Comment
 
 
 def index(request):
-    return render(request, "auctions/index.html")
+    return render(
+        request, "auctions/index.html", {"listings": Listing.objects.all()}
+    )
 
 
 def login_view(request):
     if request.method == "POST":
-
         # Attempt to sign user in
         username = request.POST["username"]
         password = request.POST["password"]
@@ -24,9 +25,11 @@ def login_view(request):
             login(request, user)
             return HttpResponseRedirect(reverse("index"))
         else:
-            return render(request, "auctions/login.html", {
-                "message": "Invalid username and/or password."
-            })
+            return render(
+                request,
+                "auctions/login.html",
+                {"message": "Invalid username and/or password."},
+            )
     else:
         return render(request, "auctions/login.html")
 
@@ -45,19 +48,51 @@ def register(request):
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
-            return render(request, "auctions/register.html", {
-                "message": "Passwords must match."
-            })
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Passwords must match."},
+            )
 
         # Attempt to create new user
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
         except IntegrityError:
-            return render(request, "auctions/register.html", {
-                "message": "Username already taken."
-            })
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Username already taken."},
+            )
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "auctions/register.html")
+
+
+def create_listing(request):
+    if request.method == "POST":
+        title = request.POST["title"]
+        description = request.POST["description"]
+        image_url = request.POST["image_url"]
+        starting_bid = request.POST["starting_bid"]
+        category = Category.objects.get(category=request.POST["category"])
+
+        try:
+            listing = Listing(
+                title=title,
+                description=description,
+                image_url=image_url,
+                starting_bid=starting_bid,
+                category=category,
+                user=request.user,
+            )
+            listing.save()
+        except IntegrityError:
+            return render(
+                request,
+                "auctions/create.html",
+                {"message": "Listing already exists."},
+            )
+        return HttpResponseRedirect(reverse("index"))
+    return render(request, "auctions/create.html")
