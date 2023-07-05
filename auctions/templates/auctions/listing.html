@@ -13,21 +13,23 @@
             Listing Closed
           </button>
         {% endif %}
-        {% if user.is_authenticated and not user == listing.user %}
-          <form action="{% url 'toggle_watchlist' listing.id %}" method="post">
-            {% csrf_token %}
-            {% if not user.id in listing.get_watchlist_users %}
-              <button type="submit" class="btn btn-primary btn-icon">
-                <i class="fa-regular fa-eye"></i>
-                Add to Watchlist
-              </button>
-            {% else %}
-              <button type="submit" class="btn btn-danger btn-icon">
-                <i class="fa-regular fa-eye-slash"></i>
-                Remove from Watchlist
-              </button>
-            {% endif %}
-          </form>
+        {% if user.is_authenticated %}
+          {% if not user == listing.user %}
+            <form action="{% url 'toggle_watchlist' listing.id %}" method="post">
+              {% csrf_token %}
+              {% if not user.id in listing.get_watchlist_users %}
+                <button type="submit" class="btn btn-primary btn-icon">
+                  <i class="fa-regular fa-eye"></i>
+                  Add to Watchlist
+                </button>
+              {% else %}
+                <button type="submit" class="btn btn-danger btn-icon">
+                  <i class="fa-regular fa-eye-slash"></i>
+                  Remove from Watchlist
+                </button>
+              {% endif %}
+            </form>
+          {% endif %}
         {% else %}
           <a href="{% url 'login' %}?next={{ request.path }}"
              class="btn btn-primary btn-icon">
