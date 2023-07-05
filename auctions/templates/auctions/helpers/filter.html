@@ -5,15 +5,15 @@
       Filter
     </label>
     <select class="form-select" id="filter" name="filter">
+      <option value="all" {% if filter == 'all' %}selected{% endif %}>All Listings</option>
       <option value="active" {% if filter == 'active' %}selected{% endif %}>Active Listings</option>
       <option value="closed" {% if filter == 'closed' %}selected{% endif %}>Closed Listings</option>
-      <option value="all" {% if filter == 'all' %}selected{% endif %}>All Listings</option>
       {% if user.is_authenticated %}
-        <option value="watchlist" {% if filter == 'watchlist' %}selected{% endif %}>Watchlist</option>
+        <option value="watchlist" {% if filter == 'watchlist' %}selected{% endif %}>My Watchlist</option>
         {% with request.resolver_match.view_name as view_name %}
           {% if view_name == "index" or view_name == "category" %}
-            <option value="winner" {% if filter == 'winner' %}selected{% endif %}>Winning Listings</option>
             <option value="my" {% if filter == 'my' %}selected{% endif %}>My Listings</option>
+            <option value="winner" {% if filter == 'winner' %}selected{% endif %}>My Winning Listings</option>
           {% endif %}
         {% endwith %}
       {% endif %}
