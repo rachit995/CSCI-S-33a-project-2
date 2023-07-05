@@ -287,5 +287,6 @@ def user(request, username):
             "listings": listings,
             "filter": listing_filter,
             "query": query,
+            "page_user": user,
         },
     )
