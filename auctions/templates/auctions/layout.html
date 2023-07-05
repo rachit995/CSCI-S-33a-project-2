@@ -57,7 +57,7 @@
                    role="button"
                    data-bs-toggle="dropdown"
                    aria-expanded="false">
-                  Signed in as <strong>{{ user.username }}</strong>.
+                  Signed in as <strong>{{ user }}</strong>
                 </a>
                 <ul class="dropdown-menu">
                   <li>
@@ -71,7 +71,7 @@
             {% else %}
               <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.view_name == 'login' %}active{% endif %}"
-                   href="{% url 'login' %}">Log In</a>
+                   href="{% url 'login' %}?next={{ request.path }}">Log In</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link {% if request.resolver_match.view_name == 'register' %}active{% endif %}"
