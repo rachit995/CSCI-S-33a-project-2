@@ -1,43 +1,68 @@
 {% extends "auctions/layout.html" %}
-
 {% block body %}
-
-<h2>Create Listing</h2>
-
-{% if message %}
-<div>{{ message }}</div>
-{% endif %}
-
-<form action="{% url 'create_listing' %}" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  <div>
-    <label for="title">Title</label>
-    <input type="text" name="title" id="title">
-  </div>
-  <div>
-    <label for="description">Description</label>
-    <textarea name="description" id="description" cols="30" rows="10"></textarea>
-  </div>
-  <div>
-    <label for="starting_bid">Starting Bid</label>
-    <input type="number" name="starting_bid" id="starting_bid">
-  </div>
-  <div>
-    <label for="category">Category</label>
-    <select name="category" id="category">
-      <option value="Fashion">Fashion</option>
-      <option value="Toys">Toys</option>
-      <option value="Electronics">Electronics</option>
-      <option value="Home">Home</option>
-      <option value="Other">Other</option>
-    </select>
-  </div>
-  <div>
-    <label for="image">Image</label>
-    <input type="text" name="image_url" id="image_url">
-  </div>
-  <input type="submit" value="Create Listing">
-
-</form>
-
+  <header class="jumbotron">
+    <h1 class="display-3 pt-3">Create Listing</h1>
+    <p class="lead">Create a new listing.</p>
+    <hr class="my-4">
+  </header>
+  <form action="{% url 'create' %}"
+        method="post"
+        enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="title" class="form-label">Title</label>
+          <input type="text"
+                 class="form-control"
+                 id="title"
+                 name="title"
+                 placeholder="Eg. iPhone 12">
+        </div>
+        <div class="mb-3">
+          <label for="starting_bid" class="form-label">Starting Bid</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="basic-addon1">$</span>
+            <input type="number"
+                   class="form-control"
+                   placeholder="Eg. 300"
+                   id="starting_bid"
+                   name="starting_bid"
+                   placeholder="Eg. $300">
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="category" class="form-label">Category</label>
+          <select name="category" id="category" class="form-select">
+            {% for category in categories %}<option value="{{ category }}">{{ category }}</option>{% endfor %}
+          </select>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control"
+                    id="description"
+                    name="description"
+                    cols="30"
+                    placeholder="Eg. 2 months old."
+                    rows="5"></textarea>
+        </div>
+        <div class=" mb-3">
+          <label for="image_url" class="form-label">
+            Image URL <small class="text-muted">(Optional)</small>
+          </label>
+          <input type="text"
+                 class="form-control"
+                 id="image_url"
+                 name="image_url"
+                 placeholder="Eg. https://images.example.com/photo-159704*****">
+        </div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary py-2 btn-icon">
+      <i class="fas fa-plus"></i>
+      Create Listing
+    </button>
+  </form>
 {% endblock %}

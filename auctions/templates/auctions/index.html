@@ -1,15 +1,92 @@
 {% extends "auctions/layout.html" %}
-
 {% block body %}
-<h2>Active Listings</h2>
-
-{% for listing in listings %}
-<div>
-    <a href="">{{ listing.title }}</a>
-    <p>{{ listing.description }}</p>
-    <p>{{ listing.starting_bid }}</p>
-    <p>{{ listing.category }}</p>
-    <p>{{ listing.image }}</p>
-</div>
-{% endfor %}
+    <header class="jumbotron">
+        <div class="pt-3 d-flex justify-content-between align-content-center flex-wrap">
+            <div>
+                <h1 class="display-3">{{ filter.title }} Listings</h1>
+                <p class="lead">
+                    {% if filter == 'closed' %}
+                        {% if query %}
+                            Closed listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through closed listings that you may have missed.
+                        {% endif %}
+                    {% elif filter == 'active' %}
+                        {% if query %}
+                            Active listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through active listings that you may be interested in.
+                        {% endif %}
+                    {% elif filter == 'all' %}
+                        {% if query %}
+                            Listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through all listings that you may be interested in.
+                        {% endif %}
+                    {% elif filter == 'winner' %}
+                        {% if query %}
+                            Winning listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through listings that you have won.
+                        {% endif %}
+                    {% elif filter == 'my' %}
+                        {% if query %}
+                            My listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through listings that you have created.
+                        {% endif %}
+                    {% elif filter == 'watchlist' %}
+                        {% if query %}
+                            Watchlist listings with the search term "{{ query }}".
+                        {% else %}
+                            Browse through listings that you have added to your watchlist.
+                        {% endif %}
+                    {% endif %}
+                </p>
+            </div>
+            <div class="d-flex align-content-center flex-wrap">{% include 'auctions/helpers/filter.html' %}</div>
+        </div>
+        <hr class="my-4">
+    </header>
+    <div class="row g-4">
+        {% for listing in listings %}
+            {% include 'auctions/helpers/item.html' %}
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">
+                    <div class="d-flex justify-content-between align-content-center flex-wrap">
+                        <div class="d-flex align-content-center flex-wrap">
+                            {% if filter == 'closed' %}
+                                {% if query %}
+                                    No closed listings found with the search term "{{ query }}".
+                                {% else %}
+                                    No closed listings found.
+                                {% endif %}
+                            {% elif filter == 'active' %}
+                                {% if query %}
+                                    No active listings found with the search term "{{ query }}".
+                                {% else %}
+                                    No active listings found.
+                                {% endif %}
+                            {% elif filter == 'all' %}
+                                {% if query %}
+                                    No listings found with the search term "{{ query }}".
+                                {% else %}
+                                    No listings found.
+                                {% endif %}
+                            {% else %}
+                                No listings found.
+                            {% endif %}
+                        </div>
+                        <div>
+                            <a href="{% url 'create' %}" class="btn btn-primary btn-icon">
+                                <i class="fa-regular fa-plus"></i>
+                                Create Listing
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
 {% endblock %}

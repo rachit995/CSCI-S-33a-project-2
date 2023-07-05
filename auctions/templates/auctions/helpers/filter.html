@@ -1,0 +1,30 @@
+<form method="get" class="d-flex gap-3">
+  <div class="input-group">
+    <label class="input-group-text btn-icon" for="filter">
+      <i class="fa-solid fa-filter"></i>
+      Filter
+    </label>
+    <select class="form-select" id="filter" name="filter">
+      <option value="active" {% if filter == 'active' %}selected{% endif %}>Active Listings</option>
+      <option value="closed" {% if filter == 'closed' %}selected{% endif %}>Closed Listings</option>
+      <option value="all" {% if filter == 'all' %}selected{% endif %}>All Listings</option>
+      {% if user.is_authenticated %}
+        <option value="watchlist" {% if filter == 'watchlist' %}selected{% endif %}>Watchlist</option>
+        {% with request.resolver_match.view_name as view_name %}
+          {% if view_name == "index" or view_name == "category" %}
+            <option value="winner" {% if filter == 'winner' %}selected{% endif %}>Winning Listings</option>
+            <option value="my" {% if filter == 'my' %}selected{% endif %}>My Listings</option>
+          {% endif %}
+        {% endwith %}
+      {% endif %}
+    </select>
+  </div>
+  <div class="input-group">
+    <input type="text"
+           class="form-control"
+           name="q"
+           placeholder="Search for listings..."
+           value="{{ query }}">
+    <button class="btn btn-primary" type="submit">Go</button>
+  </div>
+</form>

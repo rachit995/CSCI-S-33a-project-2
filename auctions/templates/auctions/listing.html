@@ -1,0 +1,221 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block body %}
+  <header class="jumbotron">
+    <div class="pt-3 d-flex justify-content-between align-content-center flex-wrap">
+      <div>
+        <h1 class="display-3">{{ listing.title }}</h1>
+      </div>
+      <div class="d-flex align-content-center flex-wrap gap-3">
+        {% if not listing.active %}
+          <button class="btn btn-danger btn-icon" disabled>
+            <i class="fa-solid fa-stopwatch"></i>
+            Listing Closed
+          </button>
+        {% endif %}
+        {% if user.is_authenticated and not user == listing.user %}
+          <form action="{% url 'toggle_watchlist' listing.id %}" method="post">
+            {% csrf_token %}
+            {% if not user.id in listing.get_watchlist_users %}
+              <button type="submit" class="btn btn-primary btn-icon">
+                <i class="fa-regular fa-eye"></i>
+                Add to Watchlist
+              </button>
+            {% else %}
+              <button type="submit" class="btn btn-danger btn-icon">
+                <i class="fa-regular fa-eye-slash"></i>
+                Remove from Watchlist
+              </button>
+            {% endif %}
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}" class="btn btn-primary btn-icon">
+            <i class="fa-regular fa-eye"></i>
+            Login to Add to Watchlist
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <p class="lead">{{ listing.description }}</p>
+    <hr class="my-4" />
+    <div class="row">
+      <div class="col-md-6 col-sm-12">
+        <div class="my-3">
+          <small>Current bid</small>
+          <h1>${{ listing.current_bid }}</h1>
+        </div>
+        <div class="my-3">
+          <strong>Category:</strong> <a href="{% url 'category' listing.category %}"
+    class="btn btn-dark btn-icon btn-sm lh-1">
+            <i class="fa-solid fa-tags"></i>
+            {{ listing.category }}
+          </a>
+        </div>
+        <div class="my-3">
+          <strong>Posted by</strong>
+          {% if user.is_authenticated %}
+            <a href="{% url 'user' listing.user.username %}">{{ listing.user }}</a>
+          {% else %}
+            Anonymous
+          {% endif %}
+        </div>
+        <div class="my-3">
+          <strong>Posted</strong> {{ listing.posted_time_ago }}
+        </div>
+        <div class="my-4 d-flex">
+          {% if listing.winner %}
+            {% if user == listing.winner.user %}
+              <div class="alert alert-success my-3 btn-icon">
+                <i class="fas fa-trophy"></i>
+                You won this auction!
+              </div>
+            {% endif %}
+            {% if user == listing.user %}
+              <div class="alert alert-info my-3 btn-icon">
+                <i class="fas fa-trophy"></i>
+                This auction was won by {{ listing.winner.user }}.
+              </div>
+            {% endif %}
+          {% elif not listing.active %}
+            <div class="alert alert-danger my-3 btn-icon">
+              <i class="fa-solid fa-stopwatch"></i>
+              This auction was closed without a winner.
+            </div>
+          {% else %}
+            {% if user.is_authenticated %}
+              {% if user == listing.user %}
+                {% if listing.get_highest_bid %}
+                  <div class="alert alert-warning my-3 btn-icon w-100">
+                    <div class="d-flex justify-content-between align-content-center flex-wrap gap-2">
+                      <div>
+                        <strong>Current Highest Bid:</strong>
+                        ${{ listing.get_highest_bid.bid }}
+                        <br />
+                        <small>{{ listing.bid_count }} bid(s) so far.</small>
+                        <small>Close this listing to sell to the highest bidder.</small>
+                      </div>
+                      <div class="d-flex align-content-center flex-wrap">
+                        <a href="{% url 'close_listing' listing.id %}"
+                           class="btn btn-danger btn-icon">
+                          <i class="fa-solid fa-stopwatch"></i>
+                          Close Listing
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                {% else %}
+                  {% if listing.active %}
+                    <div class="alert alert-warning my-3 btn-icon w-100">
+                      <div class="d-flex justify-content-between align-content-center flex-wrap">
+                        <div>
+                          <strong>No Bids Yet</strong>
+                          <br />
+                          <small>Close this listing to cancel the auction.</small>
+                        </div>
+                        <div class="d-flex align-content-center flex-wrap">
+                          <a href="{% url 'close_listing' listing.id %}"
+                             class="btn btn-danger btn-icon">
+                            <i class="fa-solid fa-stopwatch"></i>
+                            Close Listing
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  {% endif %}
+                {% endif %}
+              {% else %}
+                <form action="{% url 'add_bid' listing.id %}" method="post" class="w-75">
+                  {% csrf_token %}
+                  <div class="my-5">
+                    <label for="bid" class="form-label">
+                      {{ listing.bid_count }} bid(s) so far.
+                      {% if listing.get_highest_bid.user == user %}You are the highest bidder.{% endif %}
+                      Place new bid at:
+                    </label>
+                    <div class="input-group">
+                      <label class="input-group-text btn-icon" for="filter">$</label>
+                      <input type="number"
+                             class="form-control"
+                             id="bid"
+                             name="bid"
+                             placeholder="Greater than ${{ listing.starting_bid }}"
+                             min="{% if listing.get_highest_bid %}{{ listing.get_highest_bid.bid }}{% else %}{{ listing.starting_bid }}{% endif %}"
+                             value="{% if listing.get_highest_bid %}{{ listing.get_highest_bid.bid }}{% else %}{{ listing.starting_bid }}{% endif %}">
+                      <button type="submit" class="btn btn-primary btn-icon">
+                        <i class="fas fa-gavel"></i>
+                        Place Bid
+                      </button>
+                    </div>
+                  </div>
+                </form>
+              {% endif %}
+            {% else %}
+              <a href="{% url 'login' %}" class="btn btn-primary btn-icon my-4">
+                <i class="fas fa-gavel"></i>
+                Login to Place Bid
+              </a>
+            {% endif %}
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-md-6 text-right col-sm-12">
+        {% if listing.image_url %}
+          <img src="{{ listing.image_url }}"
+               class="img-fluid rounded shadow-sm"
+               alt="{{ listing.title }}" />
+        {% else %}
+          <img src="{% static 'auctions/images/default-item.png' %}"
+               class="img-fluid rounded shadow-sm"
+               alt="{{ listing.title }}">
+        {% endif %}
+      </div>
+    </div>
+    <hr class="my-4" />
+  </header>
+  {% if user.is_authenticated %}
+    <div class="mb-3">
+      <form action="{% url 'add_comment' listing.id %}" method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label for="comment" class="form-label">
+            Add Comment (as <strong>{{ user }})</strong>
+          </label>
+          <textarea class="form-control" id="comment" name="comment" cols="30" rows="5"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-icon">
+          <i class="fas fa-comment"></i>
+          Add Comment
+        </button>
+      </form>
+    </div>
+  {% endif %}
+  {% if comments %}
+    <div class="mb-3">
+      <h3 class="mb-4">Comments ({{ comments|length }})</h3>
+      {% for comment in comments %}
+        <div class="comment-container">
+          <img src="{% static 'auctions/images/avatar-user.svg' %}"
+               class="img-fluid rounded-circle comment-user-avatar"
+               alt="..." />
+          <div class="comment-comment">
+            <h4 class="comment-user-info">
+              {% if user.is_authenticated %}
+                <a href="{% url 'user' comment.user.username %}" class="btn-link">
+                  <strong>{{ comment.user }}</strong>
+                </a>
+              {% else %}
+                <strong>Anonymous</strong>
+              {% endif %}
+              commented {{ comment.posted_time_ago }}
+            </h4>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div>{{ comment.comment }}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  {% endif %}
+{% endblock %}

@@ -1,24 +1,39 @@
 {% extends "auctions/layout.html" %}
 
+{% block title %}
+Login - Auctions
+{% endblock %}
+
 {% block body %}
-
-    <h2>Login</h2>
-
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
-
-    <form action="{% url 'login' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input autofocus class="form-control" type="text" name="username" placeholder="Username">
+<div class="container w-100 p-4 d-flex justify-content-center py-5">
+    <div>
+        <h2 class="text-center mb-4">Login</h2>
+        <div class="bg-white p-4 shadow-sm rounded py-4">
+            {% if message %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+            <form action="{% url 'login' %}" method="post" style="width: 22em;">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Eg. john.doe">
+                </div>
+                <div class="mb-4">
+                    <label for="password" class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Eg. *****" id="password">
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
+            </form>
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
+        <div class="text-muted py-3 text-sm fs-6 text-center">
+            Don't have an account? <a href="{% url 'register' %}">Register here</a>.
         </div>
-        <input class="btn btn-primary" type="submit" value="Login">
-    </form>
+    </div>
+</div>
 
-    Don't have an account? <a href="{% url 'register' %}">Register here.</a>
+
+
 
 {% endblock %}

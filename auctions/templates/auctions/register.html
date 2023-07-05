@@ -1,30 +1,45 @@
 {% extends "auctions/layout.html" %}
 
 {% block body %}
+<div class="container w-100 p-4 d-flex justify-content-center py-5">
+    <div>
+        <h2 class="text-center mb-4">Register</h2>
+        <div class="bg-white p-4 shadow-sm rounded py-4">
+            {% if message %}
+            <div class="alert alert-danger" role="alert">
+                {{ message }}
+            </div>
+            {% endif %}
+            <form action="{% url 'register' %}" method="post" style="width: 22em;">
+                {% csrf_token %}
+                <div class=" mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Eg. john.doe">
+                </div>
+                <div class=" mb-3">
+                    <label for="email" class="form-label">Email address</label>
+                    <input type="text" class="form-control" id="email" name="email"
+                        placeholder="Eg. john.doe@email.com">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input class="form-control" type="password" name="password" placeholder="Eg. *****" id="password">
+                </div>
+                <div class="mb-3">
+                    <label for="confirmation" class="form-label">Confirm Password</label>
+                    <input class="form-control" type="confirmation" name="confirmation" placeholder="Eg. *****"
+                        id="confirmation">
+                </div>
+                <input class="btn btn-primary w-100 py-2" type="submit" value="Register">
+            </form>
 
-    <h2>Register</h2>
 
-    {% if message %}
-        <div>{{ message }}</div>
-    {% endif %}
 
-    <form action="{% url 'register' %}" method="post">
-        {% csrf_token %}
-        <div class="form-group">
-            <input class="form-control" autofocus type="text" name="username" placeholder="Username">
         </div>
-        <div class="form-group">
-            <input class="form-control" type="email" name="email" placeholder="Email Address">
+        <div class="text-muted py-3 text-sm fs-6 text-center">
+            Already have an account? <a href="{% url 'login' %}">Log In here</a>.
         </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-            <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-        </div>
-        <input class="btn btn-primary" type="submit" value="Register">
-    </form>
-
-    Already have an account? <a href="{% url 'login' %}">Log In here.</a>
+    </div>
+</div>
 
 {% endblock %}

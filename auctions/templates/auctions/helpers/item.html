@@ -1,0 +1,53 @@
+{% load static %}
+<div class="col-md-6 col-sm-12 col-lg-3">
+  <div class="card">
+    <div class="listing-image-container">
+      {% if listing.image_url %}
+        <img src="{{ listing.image_url }}"
+             class="card-img-top"
+             alt="{{ listing.title }}">
+      {% else %}
+        <img src="{% static 'auctions/images/default-item.png' %}"
+             class="card-img-top"
+             alt="{{ listing.title }}">
+      {% endif %}
+      <div class="badges">
+        {% if listing.winner.user == user %}
+          <span class="badge text-bg-success">Winner</span>
+        {% elif not listing.active %}
+          <span class="badge text-bg-danger">Closed</span>
+        {% else %}
+          <span class="badge text-bg-primary">Active</span>
+        {% endif %}
+        {% if user.id in listing.get_watchlist_users %}<span class="badge text-bg-warning">Watchlist</span>{% endif %}
+      </div>
+      <div class="category">
+        <a href="{% url 'category' listing.category %}"
+           class="btn btn-dark btn-icon btn-sm lh-1">
+          <i class="fa-solid fa-tags"></i>
+          {{ listing.category }}
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{ listing.title }}</h5>
+      <p class="card-text text-muted">{{ listing.description|truncatechars:70 }}</p>
+      <small class="btn-icon text-muted">
+        <i class="fa-regular fa-clock text-danger"></i>
+        Created {{ listing.posted_time_ago }}
+      </small>
+      <hr class="my-3">
+      <div class="d-flex justify-content-between align-content-center flex-wrap">
+        <div>
+          <small>Current bid</small>
+          <h1>${{ listing.current_bid }}</h1>
+        </div>
+      </div>
+      <a href="{% url 'listing' listing.id %}"
+         class="btn btn-primary mt-4 btn-icon">
+        <i class="fa-solid fa-eye"></i>
+        View Listing
+      </a>
+    </div>
+  </div>
+</div>

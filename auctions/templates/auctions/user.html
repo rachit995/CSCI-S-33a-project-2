@@ -1,0 +1,36 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+  <header class="jumbotron">
+    <div class="pt-3 d-flex justify-content-between align-content-center flex-wrap">
+      <div>
+        <h1 class="display-3">
+          {{user}} Listings
+        </h1>
+        <p class="lead">
+          Browse through {{user}}'s listings.
+        </p>
+      </div>
+      <div class="d-flex align-content-center flex-wrap">{% include 'auctions/helpers/filter.html' %}</div>
+    </div>
+    <hr class="my-4">
+  </header>
+  <div class="row">
+    {% for listing in listings %}
+      {% include 'auctions/helpers/item.html' %}
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info">
+          <div class="d-flex justify-content-between align-content-center flex-wrap">
+            <div class="d-flex align-content-center flex-wrap">No listings found.</div>
+            <div>
+              <a href="{% url 'create' %}" class="btn btn-primary btn-icon">
+                <i class="fa-regular fa-plus"></i>
+                Create Listing
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

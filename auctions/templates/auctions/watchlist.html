@@ -1,0 +1,24 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+  <header class="jumbotron">
+    <div class="pt-3 d-flex justify-content-between align-content-center flex-wrap">
+      <div>
+        <h1 class="display-3">Watchlist</h1>
+        <p class="lead">
+          Browse through listings that you have added to your watchlist.
+        </p>
+      </div>
+      <div class="d-flex align-content-center flex-wrap">{% include 'auctions/helpers/filter.html' %}</div>
+    </div>
+    <hr class="my-4">
+  </header>
+  <div class="row">
+    {% for listing in listings %}
+      {% include 'auctions/helpers/item.html' %}
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info">No listings found.</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

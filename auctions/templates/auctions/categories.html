@@ -1,0 +1,38 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+  <header class="jumbotron">
+    <div class="pt-3 d-flex justify-content-between align-content-center flex-wrap">
+      <div>
+        <h1 class="display-3">Categories</h1>
+        <p class="lead">Browse through all categories.</p>
+      </div>
+    </div>
+    <hr class="my-4">
+  </header>
+  <div class="row">
+    {% for category in categories %}
+      <div class="col-md-6 col-sm-12 col-lg-3">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{ category }}</h5>
+            <p>
+              {% if category.listing_count %}
+                {{ category.listing_count }} listings
+              {% else %}
+                0 listings
+              {% endif %}
+            </p>
+            <a href="{% url 'category' category %}" class="btn btn-primary btn-icon">
+              <i class="fa-solid fa-tags"></i>
+              View Category
+            </a>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <div class="col-12">
+        <div class="alert alert-info">No categories found.</div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}
