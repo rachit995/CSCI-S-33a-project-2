@@ -141,9 +141,9 @@
                              class="form-control"
                              id="bid"
                              name="bid"
-                             placeholder="Greater than ${{ listing.starting_bid }}"
-                             min="{% if listing.get_highest_bid %}{{ listing.get_highest_bid.bid }}{% else %}{{ listing.starting_bid }}{% endif %}"
-                             value="{% if listing.get_highest_bid %}{{ listing.get_highest_bid.bid }}{% else %}{{ listing.starting_bid }}{% endif %}">
+                             placeholder="Greater than ${{ listing.current_bid }}"
+                             min="{{ listing.current_bid }}"
+                             value="{{ listing.current_bid|add:1 }}">
                       <button type="submit" class="btn btn-primary btn-icon">
                         <i class="fas fa-gavel"></i>
                         Place Bid
@@ -182,7 +182,7 @@
         {% csrf_token %}
         <div class="mb-3">
           <label for="comment" class="form-label">
-            Add Comment (as <strong>{{ user }})</strong>
+            Add Comment (as <strong>{{ user }}</strong>)
           </label>
           <textarea class="form-control" id="comment" name="comment" cols="30" rows="5"></textarea>
         </div>

@@ -40,8 +40,16 @@
                    href="{% url 'create' %}">Create Listing</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link {% if request.resolver_match.view_name == 'watchlist' %}active{% endif %}"
-                   href="{% url 'watchlist' %}">Watchlist</a>
+                <a class="nav-link {% if request.resolver_match.view_name == 'watchlist' %}active{% endif %} d-flex align-items-center"
+                   href="{% url 'watchlist' %}">
+                  Watchlist
+                  {% with user.get_active_watchlist_count as count %}
+                    {% if count > 0 %}
+                      &nbsp;
+                      <span class="badge bg-secondary">{{ count }}</span>
+                    {% endif %}
+                  {% endwith %}
+                </a>
               </li>
             {% endif %}
             <li class="nav-item">

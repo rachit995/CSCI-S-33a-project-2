@@ -5,6 +5,18 @@ from django.contrib import admin
 from .models import User, Category, Listing, Bid, Comment, Watchlist
 
 
+class UserAdmin(admin.ModelAdmin):
+    list_display = (
+        "id",
+        "username",
+        "email",
+        "first_name",
+        "last_name",
+        "is_staff",
+        "is_active",
+    )
+
+
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ("id", "category", "created_at", "updated_at")
 
@@ -55,7 +67,7 @@ class BidAdmin(admin.ModelAdmin):
     )
 
 
-admin.site.register(User)
+admin.site.register(User, UserAdmin)
 admin.site.register(Category, CategoryAdmin)
 admin.site.register(Listing, ListingAdmin)
 admin.site.register(Bid, BidAdmin)
