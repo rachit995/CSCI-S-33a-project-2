@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 
 
+# Returns the time ago the listing was posted
 def get_time_ago(time):
     now = datetime.now(timezone.utc)
     time_elapsed = now - time
@@ -14,6 +15,7 @@ def get_time_ago(time):
         return f"{time_elapsed.seconds} seconds ago"
 
 
+# Filters listings based on the filter and query
 def filter_objects(request, listings, filter, query):
     if filter == "active":
         listings = listings.filter(active=True)
