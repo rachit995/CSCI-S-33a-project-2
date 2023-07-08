@@ -1,0 +1,1081 @@
+[
+{
+    "model": "auctions.user",
+    "pk": 1,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$uxyZuvGdguqToywrnkjyAR$cw/a1cvnaa7HI9q4iBc9mu1tWpdXqjPSZFKaXCmjNqA=",
+        "last_login": "2023-07-08T17:04:41.918Z",
+        "is_superuser": true,
+        "username": "rachit",
+        "first_name": "Rachit",
+        "last_name": "Sharma",
+        "email": "rachit@hogwarts.com",
+        "is_staff": true,
+        "is_active": true,
+        "date_joined": "2023-07-04T04:53:10Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auctions.user",
+    "pk": 2,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$yjLMDhsGbYIVsIsj0GUcVq$HenDR+Ftm6EMCi5gZAivDJMXdbPgvRM3IbT1qQihF5k=",
+        "last_login": "2023-07-05T10:58:49Z",
+        "is_superuser": false,
+        "username": "harry",
+        "first_name": "Harry",
+        "last_name": "Potter",
+        "email": "harry@hogwarts.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-07-04T08:42:22Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auctions.user",
+    "pk": 3,
+    "fields": {
+        "password": "pbkdf2_sha256$600000$qIWgT9dPSfDqJ3BtKOxaJY$rz+wfhkBAoWYQjYLz1lOuSYbCloovTCx5S6DZXrla0g=",
+        "last_login": "2023-07-08T16:38:26Z",
+        "is_superuser": false,
+        "username": "ron",
+        "first_name": "Ron",
+        "last_name": "Weasly",
+        "email": "ron@hogwarts.com",
+        "is_staff": false,
+        "is_active": true,
+        "date_joined": "2023-07-08T16:38:26Z",
+        "groups": [],
+        "user_permissions": []
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 2,
+    "fields": {
+        "category": "Toys",
+        "created_at": "2023-07-04T05:45:05.777Z",
+        "updated_at": "2023-07-04T05:45:05.777Z"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 3,
+    "fields": {
+        "category": "Fashion",
+        "created_at": "2023-07-04T05:45:08.011Z",
+        "updated_at": "2023-07-04T05:45:08.011Z"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 4,
+    "fields": {
+        "category": "Electronics",
+        "created_at": "2023-07-04T05:45:10.406Z",
+        "updated_at": "2023-07-04T05:45:10.406Z"
+    }
+},
+{
+    "model": "auctions.category",
+    "pk": 6,
+    "fields": {
+        "category": "Home",
+        "created_at": "2023-07-04T05:45:13.572Z",
+        "updated_at": "2023-07-08T16:58:17.187Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "title": "SwiftGrip Phone Mount",
+        "description": "The SwiftGrip Phone Mount is a versatile accessory that securely holds your phone while driving, allowing you to easily view maps, answer calls, or play music without distractions. Its adjustable design fits most smartphones and can be mounted on the dashb",
+        "image_url": "https://images.unsplash.com/photo-1501162946741-4960f990fdf4?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bW9iaWxlfHx8fHx8MTY4ODgzNjY1NA&ixlib=rb-4.0.3&q=80&utm_campaign",
+        "active": false,
+        "starting_bid": 5,
+        "category": 2,
+        "created_at": "2023-07-04T06:40:24.164Z",
+        "updated_at": "2023-07-08T17:17:40.681Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "title": "GlowUp LED Makeup Mirror",
+        "description": "The GlowUp LED Makeup Mirror is a must-have for beauty enthusiasts. Featuring adjustable lighting settings, this mirror simulates natural daylight, ensuring flawless makeup application. It also has a convenient touch sensor for adjusting brightness, a magn",
+        "image_url": "https://images.unsplash.com/photo-1599080517748-175838c7ca65?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8bWlycm9yfHx8fHx8MTY4ODgzNjY0Mg&ixlib=rb-4.0.3&q=80&utm_campaign",
+        "active": false,
+        "starting_bid": 3,
+        "category": 4,
+        "created_at": "2023-07-04T06:41:43.523Z",
+        "updated_at": "2023-07-08T17:17:26.833Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 4,
+    "fields": {
+        "user": 1,
+        "title": "FreshBreeze Air Purifier",
+        "description": "Breathe in clean and fresh air with the FreshBreeze Air Purifier. This compact yet powerful device utilizes advanced filtration technology to remove airborne pollutants, allergens, and odors from your surroundings. With its quiet operation and multiple fan",
+        "image_url": "https://images.unsplash.com/photo-1594973045425-fd741b8823d3?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8YWlyfHx8fHx8MTY4ODgzNjYyOA&ixlib=rb-4.0.3&q=80&utm_campaign=api",
+        "active": false,
+        "starting_bid": 344,
+        "category": 2,
+        "created_at": "2023-07-04T06:49:59.461Z",
+        "updated_at": "2023-07-08T17:17:12.792Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 5,
+    "fields": {
+        "user": 2,
+        "title": "Play Station 5",
+        "description": "Combine this with a compelling user interface, growing selection of exclusive experiences and a general ecosystem that embraces what came before it, and the PS5 is one of the best consoles you can buy right now",
+        "image_url": "https://www.trustedreviews.com/wp-content/uploads/sites/54/2022/11/PS5-Review-8-scaled.jpg",
+        "active": false,
+        "starting_bid": 455,
+        "category": 4,
+        "created_at": "2023-07-04T08:43:44.498Z",
+        "updated_at": "2023-07-05T05:25:20.624Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 6,
+    "fields": {
+        "user": 1,
+        "title": "FitFlex Resistance Bands Set",
+        "description": "The FitFlex Resistance Bands Set is a versatile workout companion that lets you exercise anytime, anywhere. Made from premium latex, these bands provide adjustable resistance for various levels of fitness. They are lightweight, portable, and come with a co",
+        "image_url": "https://images.unsplash.com/photo-1540539234-c14a20fb7c7b?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8ZXhlcmNpc2V8fHx8fHwxNjg4ODM2NjA4&ixlib=rb-4.0.3&q=80&utm_campaign=",
+        "active": false,
+        "starting_bid": 334,
+        "category": 6,
+        "created_at": "2023-07-05T04:48:17.506Z",
+        "updated_at": "2023-07-08T17:18:00.078Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 7,
+    "fields": {
+        "user": 2,
+        "title": "StreamLine Wireless Earbuds",
+        "description": "Experience wireless freedom with the StreamLine Wireless Earbuds. These sleek earbuds offer crystal-clear sound quality and a comfortable, ergonomic fit. With Bluetooth connectivity, they seamlessly pair with your devices, and the built-in microphone allow",
+        "image_url": "https://images.unsplash.com/photo-1591949565860-267247f76297?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8ZWFyYnVkc3x8fHx8fDE2ODg4MzY1NzY&ixlib=rb-4.0.3&q=80&utm_campaig",
+        "active": false,
+        "starting_bid": 34,
+        "category": 3,
+        "created_at": "2023-07-05T08:30:34.703Z",
+        "updated_at": "2023-07-08T17:16:21.074Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 8,
+    "fields": {
+        "user": 2,
+        "title": "EcoFresh Bamboo Toothbrush",
+        "description": "The EcoFresh Bamboo Toothbrush is an eco-friendly alternative to traditional plastic toothbrushes. Crafted from sustainable bamboo, this toothbrush features soft, charcoal-infused bristles that effectively clean your teeth and gums. It's a great choice for",
+        "image_url": "https://images.unsplash.com/photo-1589365252845-092198ba5334?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8dG9vdGhicnVzaHx8fHx8fDE2ODg4MzY1NTk&ixlib=rb-4.0.3&q=80&utm_cam",
+        "active": false,
+        "starting_bid": 3,
+        "category": 4,
+        "created_at": "2023-07-05T08:49:00.052Z",
+        "updated_at": "2023-07-08T17:16:03.886Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 9,
+    "fields": {
+        "user": 2,
+        "title": "LunaDream Sleep Mask",
+        "description": "The LunaDream Sleep Mask is the ultimate solution for a restful night's sleep. Made from soft, breathable fabric, this mask blocks out light completely, creating a perfect environment for deep relaxation. Its ergonomic design ensures a comfortable fit, and",
+        "image_url": "https://images.unsplash.com/photo-1620751852890-a89137ec78b9?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8c2xlZXB8fHx8fHwxNjg4ODM2NTQ1&ixlib=rb-4.0.3&q=80&utm_campaign=a",
+        "active": false,
+        "starting_bid": 123,
+        "category": 4,
+        "created_at": "2023-07-05T11:01:58.200Z",
+        "updated_at": "2023-07-08T17:15:49.200Z"
+    }
+},
+{
+    "model": "auctions.listing",
+    "pk": 10,
+    "fields": {
+        "user": 2,
+        "title": "TechGrip Car Phone Holder",
+        "description": "Keep your phone within easy reach while driving with the TechGrip Car Phone Holder. This versatile holder attaches securely to your car's air vent and holds your phone in a horizontal or vertical position. It's adjustable to accommodate various phone sizes",
+        "image_url": "https://images.unsplash.com/photo-1472393365320-db77a5abbecc?crop=entropy&cs=tinysrgb&fit=crop&fm=jpg&h=700&ixid=MnwxfDB8MXxyYW5kb218MHx8cGhvbmUgaG9sZGVyfHx8fHx8MTY4ODgzNjUyMg&ixlib=rb-4.0.3&q=80&utm_",
+        "active": true,
+        "starting_bid": 950,
+        "category": 3,
+        "created_at": "2023-07-05T11:03:28.684Z",
+        "updated_at": "2023-07-08T17:15:28.614Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 1,
+    "fields": {
+        "bid": 455,
+        "listing": 5,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T04:50:39.816Z",
+        "updated_at": "2023-07-05T04:50:39.816Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 2,
+    "fields": {
+        "bid": 455,
+        "listing": 5,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T04:50:40.014Z",
+        "updated_at": "2023-07-05T04:50:40.014Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 3,
+    "fields": {
+        "bid": 455,
+        "listing": 5,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T04:50:41Z",
+        "updated_at": "2023-07-05T04:50:41Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 4,
+    "fields": {
+        "bid": 455,
+        "listing": 5,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T04:53:20.876Z",
+        "updated_at": "2023-07-05T04:53:20.876Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 5,
+    "fields": {
+        "bid": 460,
+        "listing": 5,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T04:53:40.562Z",
+        "updated_at": "2023-07-05T04:53:40.562Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 6,
+    "fields": {
+        "bid": 4556,
+        "listing": 5,
+        "user": 1,
+        "winner": true,
+        "created_at": "2023-07-05T05:12:12.830Z",
+        "updated_at": "2023-07-05T05:25:20.630Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 7,
+    "fields": {
+        "bid": 5,
+        "listing": 2,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T05:35:52.475Z",
+        "updated_at": "2023-07-05T05:35:52.475Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 8,
+    "fields": {
+        "bid": 6,
+        "listing": 2,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T05:37:07.675Z",
+        "updated_at": "2023-07-05T05:37:07.675Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 9,
+    "fields": {
+        "bid": 3,
+        "listing": 3,
+        "user": 2,
+        "winner": false,
+        "created_at": "2023-07-05T05:40:26.983Z",
+        "updated_at": "2023-07-05T05:40:26.983Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 10,
+    "fields": {
+        "bid": 10,
+        "listing": 3,
+        "user": 2,
+        "winner": false,
+        "created_at": "2023-07-05T05:45:25.111Z",
+        "updated_at": "2023-07-05T05:45:25.111Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 11,
+    "fields": {
+        "bid": 12,
+        "listing": 3,
+        "user": 2,
+        "winner": false,
+        "created_at": "2023-07-05T05:47:53.605Z",
+        "updated_at": "2023-07-05T05:47:53.605Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 12,
+    "fields": {
+        "bid": 14,
+        "listing": 3,
+        "user": 2,
+        "winner": true,
+        "created_at": "2023-07-05T05:48:25.397Z",
+        "updated_at": "2023-07-05T05:48:28.878Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 13,
+    "fields": {
+        "bid": 3,
+        "listing": 8,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T09:09:19.413Z",
+        "updated_at": "2023-07-05T09:09:19.413Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 14,
+    "fields": {
+        "bid": 30,
+        "listing": 8,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T09:10:42.970Z",
+        "updated_at": "2023-07-05T09:10:42.970Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 15,
+    "fields": {
+        "bid": 303,
+        "listing": 8,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T09:12:58.903Z",
+        "updated_at": "2023-07-05T09:12:58.903Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 16,
+    "fields": {
+        "bid": 304,
+        "listing": 8,
+        "user": 1,
+        "winner": true,
+        "created_at": "2023-07-05T09:31:32.901Z",
+        "updated_at": "2023-07-05T09:31:43.156Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 17,
+    "fields": {
+        "bid": 345,
+        "listing": 4,
+        "user": 2,
+        "winner": false,
+        "created_at": "2023-07-05T10:38:26.596Z",
+        "updated_at": "2023-07-05T10:38:26.596Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 18,
+    "fields": {
+        "bid": 500,
+        "listing": 4,
+        "user": 2,
+        "winner": false,
+        "created_at": "2023-07-05T10:38:33.115Z",
+        "updated_at": "2023-07-05T10:38:33.115Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 19,
+    "fields": {
+        "bid": 501,
+        "listing": 4,
+        "user": 2,
+        "winner": true,
+        "created_at": "2023-07-05T10:39:43.838Z",
+        "updated_at": "2023-07-05T10:39:50.982Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 20,
+    "fields": {
+        "bid": 950,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T11:03:40.896Z",
+        "updated_at": "2023-07-05T11:03:40.896Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 21,
+    "fields": {
+        "bid": 123,
+        "listing": 9,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-05T11:05:11.603Z",
+        "updated_at": "2023-07-05T11:05:11.603Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 22,
+    "fields": {
+        "bid": 125,
+        "listing": 9,
+        "user": 1,
+        "winner": true,
+        "created_at": "2023-07-05T11:05:30.590Z",
+        "updated_at": "2023-07-05T11:05:39.725Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 23,
+    "fields": {
+        "bid": 951,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T02:56:00.696Z",
+        "updated_at": "2023-07-06T02:56:00.696Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 24,
+    "fields": {
+        "bid": 952,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T02:57:54.059Z",
+        "updated_at": "2023-07-06T02:57:54.059Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 25,
+    "fields": {
+        "bid": 953,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:36.872Z",
+        "updated_at": "2023-07-06T03:01:36.872Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 26,
+    "fields": {
+        "bid": 954,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:37.737Z",
+        "updated_at": "2023-07-06T03:01:37.737Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 27,
+    "fields": {
+        "bid": 955,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:38.357Z",
+        "updated_at": "2023-07-06T03:01:38.358Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 28,
+    "fields": {
+        "bid": 956,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:38.733Z",
+        "updated_at": "2023-07-06T03:01:38.733Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 29,
+    "fields": {
+        "bid": 957,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:39.100Z",
+        "updated_at": "2023-07-06T03:01:39.100Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 30,
+    "fields": {
+        "bid": 958,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:39.425Z",
+        "updated_at": "2023-07-06T03:01:39.425Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 31,
+    "fields": {
+        "bid": 959,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:39.715Z",
+        "updated_at": "2023-07-06T03:01:39.715Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 32,
+    "fields": {
+        "bid": 960,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:39.923Z",
+        "updated_at": "2023-07-06T03:01:39.923Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 33,
+    "fields": {
+        "bid": 961,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:40.122Z",
+        "updated_at": "2023-07-06T03:01:40.122Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 34,
+    "fields": {
+        "bid": 962,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:40.315Z",
+        "updated_at": "2023-07-06T03:01:40.315Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 35,
+    "fields": {
+        "bid": 963,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:40.506Z",
+        "updated_at": "2023-07-06T03:01:40.506Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 36,
+    "fields": {
+        "bid": 964,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:40.858Z",
+        "updated_at": "2023-07-06T03:01:40.858Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 37,
+    "fields": {
+        "bid": 965,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:41.049Z",
+        "updated_at": "2023-07-06T03:01:41.049Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 38,
+    "fields": {
+        "bid": 966,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:41.234Z",
+        "updated_at": "2023-07-06T03:01:41.234Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 39,
+    "fields": {
+        "bid": 967,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:41.597Z",
+        "updated_at": "2023-07-06T03:01:41.597Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 40,
+    "fields": {
+        "bid": 968,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:41.954Z",
+        "updated_at": "2023-07-06T03:01:41.954Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 41,
+    "fields": {
+        "bid": 969,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:42.329Z",
+        "updated_at": "2023-07-06T03:01:42.329Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 42,
+    "fields": {
+        "bid": 970,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:42.696Z",
+        "updated_at": "2023-07-06T03:01:42.696Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 43,
+    "fields": {
+        "bid": 971,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:43.076Z",
+        "updated_at": "2023-07-06T03:01:43.076Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 44,
+    "fields": {
+        "bid": 972,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:43.423Z",
+        "updated_at": "2023-07-06T03:01:43.423Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 45,
+    "fields": {
+        "bid": 973,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:43.591Z",
+        "updated_at": "2023-07-06T03:01:43.591Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 46,
+    "fields": {
+        "bid": 974,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:44.151Z",
+        "updated_at": "2023-07-06T03:01:44.151Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 47,
+    "fields": {
+        "bid": 975,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:44.570Z",
+        "updated_at": "2023-07-06T03:01:44.570Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 48,
+    "fields": {
+        "bid": 976,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:44.806Z",
+        "updated_at": "2023-07-06T03:01:44.806Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 49,
+    "fields": {
+        "bid": 977,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:45.058Z",
+        "updated_at": "2023-07-06T03:01:45.058Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 50,
+    "fields": {
+        "bid": 978,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:45.327Z",
+        "updated_at": "2023-07-06T03:01:45.327Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 51,
+    "fields": {
+        "bid": 979,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:45.576Z",
+        "updated_at": "2023-07-06T03:01:45.576Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 52,
+    "fields": {
+        "bid": 980,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:45.838Z",
+        "updated_at": "2023-07-06T03:01:45.839Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 53,
+    "fields": {
+        "bid": 981,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:46.122Z",
+        "updated_at": "2023-07-06T03:01:46.122Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 54,
+    "fields": {
+        "bid": 982,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:46.361Z",
+        "updated_at": "2023-07-06T03:01:46.361Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 55,
+    "fields": {
+        "bid": 983,
+        "listing": 10,
+        "user": 1,
+        "winner": false,
+        "created_at": "2023-07-06T03:01:46.626Z",
+        "updated_at": "2023-07-06T03:01:46.626Z"
+    }
+},
+{
+    "model": "auctions.bid",
+    "pk": 56,
+    "fields": {
+        "bid": 984,
+        "listing": 10,
+        "user": 3,
+        "winner": false,
+        "created_at": "2023-07-08T16:38:31.045Z",
+        "updated_at": "2023-07-08T16:38:31.045Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 1,
+    "fields": {
+        "comment": "The bidding community here is so friendly",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:09:58.084Z",
+        "updated_at": "2023-07-08T17:10:28.318Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 2,
+    "fields": {
+        "comment": "The bidding frenzy is real!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:10:00.241Z",
+        "updated_at": "2023-07-08T17:10:20.665Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 3,
+    "fields": {
+        "comment": "This auction is a steal!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:10:02.410Z",
+        "updated_at": "2023-07-08T17:10:14.199Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 4,
+    "fields": {
+        "comment": "Must resist the temptation to go over my budget!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:11:10.810Z",
+        "updated_at": "2023-07-08T17:10:07.218Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 5,
+    "fields": {
+        "comment": "Bidding can be addictive",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:15:29.215Z",
+        "updated_at": "2023-07-08T17:09:58.250Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 6,
+    "fields": {
+        "comment": "I've won a few auctions here before. Hoping for another lucky win this time!",
+        "listing": 3,
+        "user": 1,
+        "created_at": "2023-07-04T07:15:49.988Z",
+        "updated_at": "2023-07-08T17:09:50.710Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 7,
+    "fields": {
+        "comment": "To bid or not to bid? That is the question... Well, I'm going for it!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-04T07:39:12.071Z",
+        "updated_at": "2023-07-08T17:09:43.468Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 8,
+    "fields": {
+        "comment": "I can't believe how quickly the bids are increasing. This item is in high demand!",
+        "listing": 2,
+        "user": 2,
+        "created_at": "2023-07-04T08:42:33.732Z",
+        "updated_at": "2023-07-08T17:09:37.427Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 9,
+    "fields": {
+        "comment": "Bidding wars are intense, but that's what makes it exciting!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-05T05:31:18.060Z",
+        "updated_at": "2023-07-08T17:09:29.102Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 10,
+    "fields": {
+        "comment": "Just placed my highest bid. Hope no one outbids me!",
+        "listing": 8,
+        "user": 2,
+        "created_at": "2023-07-05T09:20:44.325Z",
+        "updated_at": "2023-07-08T17:09:22.139Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 11,
+    "fields": {
+        "comment": "I've been eyeing this item for a while now. Time to place my bid and cross my fingers!",
+        "listing": 2,
+        "user": 1,
+        "created_at": "2023-07-05T10:11:15.272Z",
+        "updated_at": "2023-07-08T17:09:15.491Z"
+    }
+},
+{
+    "model": "auctions.comment",
+    "pk": 12,
+    "fields": {
+        "comment": "Wow, this item is definitely worth the bid! Good luck to everyone!",
+        "listing": 10,
+        "user": 1,
+        "created_at": "2023-07-06T02:55:48.349Z",
+        "updated_at": "2023-07-08T17:09:04.942Z"
+    }
+},
+{
+    "model": "auctions.watchlist",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "listing": 2,
+        "created_at": "2023-07-04T07:13:05.635Z",
+        "updated_at": "2023-07-04T07:13:05.635Z"
+    }
+},
+{
+    "model": "auctions.watchlist",
+    "pk": 22,
+    "fields": {
+        "user": 2,
+        "listing": 4,
+        "created_at": "2023-07-05T08:30:00.194Z",
+        "updated_at": "2023-07-05T08:30:00.194Z"
+    }
+},
+{
+    "model": "auctions.watchlist",
+    "pk": 28,
+    "fields": {
+        "user": 1,
+        "listing": 7,
+        "created_at": "2023-07-05T10:10:05.436Z",
+        "updated_at": "2023-07-05T10:10:05.436Z"
+    }
+},
+{
+    "model": "auctions.watchlist",
+    "pk": 31,
+    "fields": {
+        "user": 1,
+        "listing": 10,
+        "created_at": "2023-07-08T16:37:14.474Z",
+        "updated_at": "2023-07-08T16:37:14.474Z"
+    }
+},
+{
+    "model": "auctions.watchlist",
+    "pk": 32,
+    "fields": {
+        "user": 3,
+        "listing": 10,
+        "created_at": "2023-07-08T16:38:45.440Z",
+        "updated_at": "2023-07-08T16:38:45.440Z"
+    }
+}
+]
