@@ -48,7 +48,7 @@ class Listing(models.Model):
         User, on_delete=models.CASCADE, related_name="listings"
     )  # User who posted the listing
     title = models.CharField(max_length=64)  # Listing title
-    description = models.CharField(max_length=256)  # Listing description
+    description = models.TextField()  # Listing description
     image_url = models.URLField(blank=True)  # Listing image url
     active = models.BooleanField(default=True)  # Listing active status
     starting_bid = models.IntegerField()  # Listing starting bid
