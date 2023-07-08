@@ -55,3 +55,15 @@ Once the server is running, visit http://localhost:8000/ in your web browser to 
 - **Close Auction**: If the user who created the listing is logged in, they have the ability to “close” the auction from the listing page, which makes the highest bidder the winner of the auction and makes the listing no longer active.
 
 - **Commenting**: Users who are signed in can add comments to the listing page. The listing page displays all comments that have been made on the listing.
+
+### Screenshots
+
+
+
+![Screenshot 1](screenshots/screenshot1.png)
+![Screenshot 2](screenshots/screenshot2.png)
+![Screenshot 3](screenshots/screenshot3.png)
+![Screenshot 4](screenshots/screenshot4.png)
+![Screenshot 5](screenshots/screenshot5.png)
+![Screenshot 6](screenshots/screenshot6.png)
+![Screenshot 7](screenshots/screenshot7.png)
