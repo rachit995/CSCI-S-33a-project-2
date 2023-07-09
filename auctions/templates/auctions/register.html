@@ -13,7 +13,14 @@
                                class="form-control"
                                id="username"
                                name="username"
-                               placeholder="Eg. john.doe">
+                               placeholder="Eg. john.doe"
+                               required
+                               autofocus
+                               aria-describedby="usernameHelp"
+                               autocomplete="username"
+                               maxlength="150"
+                               value="{{ request.POST.username }}"
+                               title="Only alphanumeric characters and underscores are allowed.">
                     </div>
                     <div class=" mb-3">
                         <label for="email" class="form-label">Email address</label>
@@ -21,7 +28,12 @@
                                class="form-control"
                                id="email"
                                name="email"
-                               placeholder="Eg. john.doe@email.com">
+                               placeholder="Eg. john.doe@email.com"
+                               required
+                               autocomplete="email"
+                               maxlength="254"
+                               value="{{ request.POST.email }}"
+                               title="Email must be at most 254 characters long.">
                     </div>
                     <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
@@ -29,7 +41,11 @@
                                type="password"
                                name="password"
                                placeholder="Eg. *****"
-                               id="password">
+                               id="password"
+                               required
+                               autocomplete="new-password"
+                               maxlength="128"
+                               title="Password must be at least 8 characters long.">
                     </div>
                     <div class="mb-3">
                         <label for="confirmation" class="form-label">Confirm Password</label>
@@ -37,7 +53,11 @@
                                type="password"
                                name="confirmation"
                                placeholder="Eg. *****"
-                               id="confirmation">
+                               id="confirmation"
+                               required
+                               autocomplete="new-password"
+                               maxlength="128"
+                               title="Password must be at least 8 characters long.">
                     </div>
                     <input class="btn btn-primary w-100 py-2" type="submit" value="Register">
                 </form>

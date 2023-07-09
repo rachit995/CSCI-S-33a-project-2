@@ -16,7 +16,13 @@
                                class="form-control"
                                id="username"
                                name="username"
-                               placeholder="Eg. john.doe">
+                               placeholder="Eg. john.doe"
+                               autofocus
+                               required
+                               aria-describedby="usernameHelp"
+                               autocomplete="username"
+                               maxlength="150"
+                               title="Only alphanumeric characters and underscores are allowed.">
                     </div>
                     <div class="mb-4">
                         <label for="password" class="form-label">Password</label>
@@ -24,7 +30,11 @@
                                type="password"
                                name="password"
                                placeholder="Eg. *****"
-                               id="password">
+                               id="password"
+                               required
+                               autocomplete="current-password"
+                               maxlength="128"
+                               title="Password must be at least 8 characters long.">
                     </div>
                     <button type="submit" class="btn btn-primary w-100 py-2">Login</button>
                 </form>

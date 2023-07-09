@@ -37,10 +37,17 @@ def login_view(request):
 
     :param request: HTTP request
     :return: index page if login successful, login page if login unsuccessful
+
+    Not using Django forms because this was already implemented in the
+    distribution code.
     """
-    next_page = request.GET["next"]
+    # If user is already logged in, redirect to redirect url or index page
+    next_page = request.GET["next"] if "next" in request.GET else None
     if request.user.is_authenticated:
-        return HttpResponseRedirect(next_page)
+        if next_page:
+            return HttpResponseRedirect(next_page)
+        else:
+            return HttpResponseRedirect(reverse("index"))
     else:
         if request.method == "POST":
             # Attempt to sign user in
@@ -83,15 +90,48 @@ def register(request):
     :param request: HTTP request
     :return: index page if registration successful, registration page if
     registration unsuccessful
-    """
 
+    Not using Django forms because this was already implemented in the
+    distribution code.
+    """
+    # If user is already logged in, redirect to index page
+    if request.user.is_authenticated:
+        return HttpResponseRedirect(reverse("index"))
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
 
+        # Ensure username and email are not empty
+        if not username:
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Username cannot be empty."},
+            )
+
+        if not email:
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Email cannot be empty."},
+            )
+
         # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
+        if not password:
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Password cannot be empty."},
+            )
+        if not confirmation:
+            return render(
+                request,
+                "auctions/register.html",
+                {"message": "Confirmation cannot be empty."},
+            )
+
         if password != confirmation:
             return render(
                 request,
@@ -131,24 +171,45 @@ def create_listing(request):
         image_url = request.POST["image_url"]
         starting_bid = request.POST["starting_bid"]
         category = Category.objects.get(category=request.POST["category"])
-
-        try:
-            listing = Listing(
-                title=title,
-                description=description,
-                image_url=image_url,
-                starting_bid=starting_bid,
-                category=category,
-                user=request.user,
-            )
-            listing.save()
-        except IntegrityError:
+        # Ensure title, description, starting_bid and category are not empty
+        if not title:
             messages.error(
                 request,
-                "Listing already exists.",
+                "Title cannot be empty.",
             )
-            return render(request, "auctions/create_listing.html")
-        return HttpResponseRedirect(reverse("index"))
+        if not description:
+            messages.error(
+                request,
+                "Description cannot be empty.",
+            )
+        if not starting_bid:
+            messages.error(
+                request,
+                "Starting bid cannot be empty.",
+            )
+        if not category:
+            messages.error(
+                request,
+                "Category cannot be empty.",
+            )
+        if title and description and starting_bid and category:
+            try:
+                listing = Listing(
+                    title=title,
+                    description=description,
+                    image_url=image_url,
+                    starting_bid=starting_bid,
+                    category=category,
+                    user=request.user,
+                )
+                listing.save()
+            except IntegrityError:
+                messages.error(
+                    request,
+                    "Listing already exists.",
+                )
+                return render(request, "auctions/create_listing.html")
+            return HttpResponseRedirect(reverse("index"))
     return render(
         request,
         "auctions/create_listing.html",
