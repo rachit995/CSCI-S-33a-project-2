@@ -163,6 +163,9 @@ def create_listing(request):
     :param request: HTTP request
     :return: index page if creation successful, create listing page if creation
     unsuccessful
+
+    Not using Django forms because I wanted to style the form with Bootstrap
+    components like bid and category.
     """
 
     if request.method == "POST":
