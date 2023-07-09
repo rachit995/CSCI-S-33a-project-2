@@ -7,12 +7,14 @@ urlpatterns = [
     path("login", views.login_view, name="login"),  # Login page
     path("logout", views.logout_view, name="logout"),  # Logout page
     path("register", views.register, name="register"),  # Register page
-    path("create", views.create, name="create"),  # Create listing page
+    path("create", views.create_listing, name="create"),  # Create listing page
     path(
-        "listing/<int:listing_id>", views.listing, name="listing"
+        "listing/<int:listing_id>", views.listing_item_view, name="listing"
     ),  # Listing page
-    path("watchlist", views.watchlist, name="watchlist"),  # Watchlist page
-    path("categories", views.categories, name="categories"),
+    path(
+        "watchlist", views.watchlist_view, name="watchlist"
+    ),  # Watchlist page
+    path("categories", views.categories_list_view, name="categories"),
     path(
         "toggle_watchlist/<int:listing_id>",
         views.toggle_watchlist,
@@ -30,7 +32,9 @@ urlpatterns = [
         name="close_listing",
     ),  # API endpoint to close listing
     path(
-        "categories/<str:category>", views.category, name="category"
+        "categories/<str:category>", views.category_item_view, name="category"
     ),  # Category page
-    path("user/<str:username>", views.user, name="user"),  # User page
+    path(
+        "user/<str:username>", views.user_listings_view, name="user"
+    ),  # User page
 ]

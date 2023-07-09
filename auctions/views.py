@@ -14,6 +14,12 @@ login_url = "login"
 
 
 def index(request):
+    """
+    Returns the index page with all active listings and the filter and search
+
+    :param request: HTTP request
+    :return: index page with all active listings
+    """
     listings = Listing.objects.all()
     listing_filter = request.GET.get("filter", "active")
     query = request.GET.get("q", "")
@@ -26,6 +32,12 @@ def index(request):
 
 
 def login_view(request):
+    """
+    Logs in the user if the username and password are correct.
+
+    :param request: HTTP request
+    :return: index page if login successful, login page if login unsuccessful
+    """
     next_page = request.GET["next"]
     if request.user.is_authenticated:
         return HttpResponseRedirect(next_page)
@@ -54,11 +66,25 @@ def login_view(request):
 
 
 def logout_view(request):
+    """
+    Logs out the user.
+
+    :param request: HTTP request
+    :return: index page
+    """
     logout(request)
     return HttpResponseRedirect(reverse("index"))
 
 
 def register(request):
+    """
+    Registers a new user.
+
+    :param request: HTTP request
+    :return: index page if registration successful, registration page if
+    registration unsuccessful
+    """
+
     if request.method == "POST":
         username = request.POST["username"]
         email = request.POST["email"]
@@ -90,7 +116,15 @@ def register(request):
 
 
 @login_required(login_url=login_url)
-def create(request):
+def create_listing(request):
+    """
+    Creates a new listing.
+
+    :param request: HTTP request
+    :return: index page if creation successful, create listing page if creation
+    unsuccessful
+    """
+
     if request.method == "POST":
         title = request.POST["title"]
         description = request.POST["description"]
@@ -113,18 +147,28 @@ def create(request):
                 request,
                 "Listing already exists.",
             )
-            return render(request, "auctions/create.html")
+            return render(request, "auctions/create_listing.html")
         return HttpResponseRedirect(reverse("index"))
     return render(
-        request, "auctions/create.html", {"categories": Category.objects.all()}
+        request,
+        "auctions/create_listing.html",
+        {"categories": Category.objects.all()},
     )
 
 
-def listing(request, listing_id, error_message=""):
+def listing_item_view(request, listing_id):
+    """
+    Returns the listing page.
+
+    :param request: HTTP request
+    :param listing_id: listing id
+    :return: listing page
+    """
+
     listing = Listing.objects.get(pk=listing_id)
     return render(
         request,
-        "auctions/listing.html",
+        "auctions/listing_item.html",
         {
             "listing": listing,
             "bids": listing.bids.all(),
@@ -134,7 +178,14 @@ def listing(request, listing_id, error_message=""):
 
 
 @login_required(login_url=login_url)
-def watchlist(request):
+def watchlist_view(request):
+    """
+    Returns the watchlist page.
+
+    :param request: HTTP request
+    :return: watchlist page
+    """
+
     listings = Listing.objects.filter(watchlists__user=request.user)
     listing_filter = request.GET.get("filter", "active")
     query = request.GET.get("q", "")
@@ -150,14 +201,28 @@ def watchlist(request):
     )
 
 
-def categories(request):
+def categories_list_view(request):
+    """
+    Returns the categories page.
+
+    :param request: HTTP request
+    :return: categories page
+    """
+
     categories = Category.objects.all()
     return render(
         request, "auctions/categories.html", {"categories": categories}
     )
 
 
-def category(request, category):
+def category_item_view(request, category):
+    """
+    Returns the category page.
+
+    :param request: HTTP request
+    :param category: category name
+    :return: category page
+    """
     category = Category.objects.get(category=category)
     listings = Listing.objects.filter(category=category)
     listing_filter = request.GET.get("filter", "active")
@@ -177,6 +242,14 @@ def category(request, category):
 
 @login_required(login_url=login_url)
 def toggle_watchlist(request, listing_id):
+    """
+    Toggles the watchlist.
+
+    :param request: HTTP request
+    :param listing_id: listing id
+    :return: listing page
+    """
+
     if request.method == "POST":
         listing = Listing.objects.get(pk=listing_id)
         if request.user == listing.user:
@@ -212,6 +285,14 @@ def toggle_watchlist(request, listing_id):
 
 @login_required(login_url=login_url)
 def add_bid(request, listing_id):
+    """
+    Adds a bid to the listing.
+
+    :param request: HTTP request
+    :param listing_id: listing id
+    :return: listing page
+    """
+
     listing = Listing.objects.get(pk=listing_id)
     bid = int(request.POST["bid"])
     if bid < listing.starting_bid:
@@ -251,6 +332,14 @@ def add_bid(request, listing_id):
 
 @login_required(login_url=login_url)
 def add_comment(request, listing_id):
+    """
+    Adds a comment to the listing.
+
+    :param request: HTTP request
+    :param listing_id: listing id
+    :return: listing page
+    """
+
     listing = Listing.objects.get(pk=listing_id)
     comment = Comment(
         comment=request.POST["comment"], listing=listing, user=request.user
@@ -261,6 +350,14 @@ def add_comment(request, listing_id):
 
 @login_required(login_url=login_url)
 def close_listing(request, listing_id):
+    """
+    Closes the listing.
+
+    :param request: HTTP request
+    :param listing_id: listing id
+    :return: listing page
+    """
+
     listing = Listing.objects.get(pk=listing_id)
     if request.user == listing.user:
         listing.close_listing()
@@ -274,7 +371,15 @@ def close_listing(request, listing_id):
 
 
 @login_required(login_url=login_url)
-def user(request, username):
+def user_listings_view(request, username):
+    """
+    Returns the user page with all the listings of the user.
+
+    :param request: HTTP request
+    :param username: username
+    :return: user page
+    """
+
     user = User.objects.get(username=username)
     listings = Listing.objects.filter(user=user)
     listing_filter = request.GET.get("filter", "active")

@@ -16,10 +16,10 @@
           <div class="card-body">
             <h5 class="card-title">{{ category }}</h5>
             <p>
-              {% if category.listing_count %}
-                {{ category.listing_count }} listings
+              {% if category.active_listing_count %}
+                {{ category.active_listing_count }} active listings
               {% else %}
-                0 listings
+                0 active listings
               {% endif %}
             </p>
             <a href="{% url 'category' category %}" class="btn btn-primary btn-icon">

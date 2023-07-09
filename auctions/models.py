@@ -38,8 +38,8 @@ class Category(models.Model):
         return f"{self.category.capitalize()}"
 
     # Returns the number of listings in the category
-    def listing_count(self):
-        return self.listings.count()
+    def active_listing_count(self):
+        return self.listings.filter(active=True).count()
 
 
 # Listing model
