@@ -173,7 +173,9 @@ def create_listing(request):
         description = request.POST["description"]
         image_url = request.POST["image_url"]
         starting_bid = request.POST["starting_bid"]
-        category = Category.objects.get(category=request.POST["category"])
+        category = Category.objects.filter(
+            category__iexact=request.POST["category"]
+        ).first()
         # Ensure title, description, starting_bid and category are not empty
         if not title:
             messages.error(
@@ -287,7 +289,7 @@ def category_item_view(request, category):
     :param category: category name
     :return: category page
     """
-    category = Category.objects.get(category=category)
+    category = Category.objects.filter(category__iexact=category).first()
     listings = Listing.objects.filter(category=category)
     listing_filter = request.GET.get("filter", "active")
     query = request.GET.get("q", "")
